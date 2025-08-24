@@ -167,12 +167,12 @@ function widget:ResetTheCamera()
 		Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)
     end
 
-    camState.rz = current.rz   -- was considering setting this to 0 since under normal circumstances this shouldnt really be anything other than 0
-
+    camState.rz = current.rz   -- was considering setting this to 0 since under normal circumstances this shouldnt really be anything other than 0 
+                               -- I did actually have a time while testing that this somehow got screwed up which is why its here now >__>
     Spring.SetCameraState(camState, 1.0)
 
 
-    Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)   -- Optional message to display what the values were updated to
+    --Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)   -- Optional message to display what the values were updated to
 end
 
 
