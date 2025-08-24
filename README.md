@@ -10,8 +10,8 @@ I couldn't find a solution to easily and repeatably adjust the camera how I want
 
 Chat: /camset X Y  (replace XY with the desired values, in degrees)
 
-List of commands: /camset X Y     /setcam X Y
-                  /camerareset    /resetcamera  
+List of commands: /camset X Y         /setcam X Y<br>
+                  /camerareset        /resetcamera <br> 
    
 You can also choose to use only 1 value to ONLY update a particular axis like this: /camset 90. <-- that will change your pitch (X) while keeping your yaw (Y) the same.<br>
 Alternatively, you can set your yaw and leave pitch unchanged by adding a Y after your singular number like this: /camset 90Y  or  /camset 90y
