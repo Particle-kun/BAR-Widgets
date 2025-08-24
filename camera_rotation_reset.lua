@@ -13,7 +13,7 @@ end
 -- Usage: 
 
 -- 		 Chat: /camset X Y  (replace XY with the desired values, in degrees)
--- 		       You can also choose to use only 1 value to ONLY update a particular axis like this: /camset 90. <-- that will change your pitch (X) while keeping your yaw (Y) the same.
+-- 		       You can also choose to use a single value to ONLY update a particular axis like this: /camset 90 <-- that will change your pitch (X) while keeping your yaw (Y) the same.
 -- 		       Alternatively, you can set your Yaw and leave pitch unchanged by adding a Y after your singular number like this: /camset 90Y  or  /camset 90y
 
 --       List of commands: /camset X Y     /setcam X Y
@@ -82,7 +82,7 @@ function widget:TextCommand(command)                  -- passes values in radian
 				if angle then
 					rotY = math.rad(angle)
 					rotX = current.rx    -- keep current pitch
-					rotY_isCommanded = true
+					rotY_isCommanded = true -- see why at the next function
 				else
 					Spring.Echo("Error: Invalid Y angle value '" .. numStr .. "'.")
 				end
@@ -98,22 +98,24 @@ function widget:TextCommand(command)                  -- passes values in radian
 				end
 			end
 			
-        elseif #words >= 3 then
-            local angleX = tonumber(words[2])    -- theres probably a better way to handle input sanitizing but oh well
-            if angleX then
-                rotX = math.rad(angleX) + math.rad(90)
-            else
-                Spring.Echo("Error: Invalid X angle value '" .. words[2] .. "'. Using default.") 
-                rotX = math.rad(63.381) + math.rad(90)     -- if there is anything that invalidates the param string, revert to these defaults
-            end
-            
-            local angleY = tonumber(words[3])
-            if angleY then
-                rotY = math.rad(angleY)
-            else
-                Spring.Echo("Error: Invalid Y angle value '" .. words[3] .. "'. Using default.")
-                rotY = math.rad(0)
-            end
+		elseif #words >= 3 then
+			local angleX = tonumber(words[2])   -- theres probably a better way to handle input sanitizing but oh well
+			if angleX then
+				rotX = math.rad(angleX) + math.rad(90)
+			else
+				Spring.Echo("Error: Invalid X angle value '" .. words[2] .. "'. Using default.")
+				rotX = math.rad(63.381) + math.rad(90)    -- if there is anything that invalidates the param string, revert to these defaults
+			end
+		
+			local angleY = tonumber(words[3])
+			if angleY then
+				rotY = math.rad(angleY)
+				rotY_isCommanded = true 
+			else
+				Spring.Echo("Error: Invalid Y angle value '" .. words[3] .. "'. Using default.")
+				rotY = 0
+				rotY_isCommanded = true
+			end
         end
         
         self:ResetTheCamera()
@@ -157,9 +159,11 @@ function widget:ResetTheCamera()
 
     if rotY_isCommanded then
         camState.ry = InverseCardinalLock(rotY)  -- If yaw came from explicit user input, reverse cardinal lock. InverseCardinalLock should only be used for user input, not current.ry
+		Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)
     else
         camState.ry = current.ry
         rotY = current.ry  -- prevent stale values from passing, edgecase
+		Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)
     end
 
     camState.rz = current.rz   -- was considering setting this to 0 since under normal circumstances this shouldnt really be anything other than 0
@@ -167,7 +171,7 @@ function widget:ResetTheCamera()
     Spring.SetCameraState(camState, 1.0)
 
 
-    --Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)   -- Optional message to display what the values were updated to
+    Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)   -- Optional message to display what the values were updated to
 end
 
 
