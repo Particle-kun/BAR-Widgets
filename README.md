@@ -1,6 +1,7 @@
 # BAR-Widgets
 
 Camera Rotation Reset
+
 Sets spring camera orientation by chat command or keybind
 
 I made this because anchorkeys disappear after restarting the game and I didn't like that. 
