@@ -3,7 +3,7 @@
 Camera Rotation Reset
 Sets spring camera orientation by chat command or keybind
 
-I made this becaue anchorkeys disappear after restarting the game and I didn't like that. 
+I made this because anchorkeys disappear after restarting the game and I didn't like that. 
 I couldn't find an easy solution to easily and repeatably adjust the camera how I wanted, so I made this widget to address that.
 
 
