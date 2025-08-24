@@ -37,6 +37,7 @@ local rotY_isCommanded = false
 
 
 function widget:Initialize()
+	Spring.SetConfigInt("CamSpringLockCardinalDirections", 0)
     widgetHandler:AddAction("camset", function(_, _, params) self:HandleCamset(_, _, params) end)
     widgetHandler:AddAction("setcam", function(_, _, params) self:HandleCamset(_, _, params) end)
     widgetHandler:AddAction("camerareset", function() self:HandleCameraReset() end)
@@ -57,8 +58,8 @@ end
 
 function widget:HandleCameraReset()
 	rotX = 2.677   -- this is the default value for X, in radians. Basically equal to math.rad(63.381) + math.rad(90)
-	rotY = 0  
-	rotY_isCommanded = true
+	rotY = 0   
+	rotY_isCommanded = true     
     self:ResetTheCamera()
 end
 
@@ -122,7 +123,10 @@ function widget:TextCommand(command)                  -- passes values in radian
         self:ResetTheCamera()
         return true
     elseif words[1] == "camerareset" or words[1] == "resetcamera" then  -- defaults/fallbacks / attempting intuitive coverage of likely terms if someone is trying to remember what the right commands are
-        self:ResetTheCamera()
+		rotX = 2.677 
+        rotY = 0   
+		rotY_isCommanded = true
+		self:ResetTheCamera()
         return true
     end
     
@@ -167,8 +171,8 @@ function widget:ResetTheCamera()
 		Spring.Echo("Camera reset to: X=" .. rotX .. ", Y=" .. rotY)
     end
 
-    camState.rz = current.rz   -- was considering setting this to 0 since under normal circumstances this shouldnt really be anything other than 0 
-                               -- I did actually have a time while testing that this somehow got screwed up which is why its here now >__>
+    camState.rz = current.rz   -- was considering setting this to 0 since under normal circumstances this shouldnt really be anything other than 0. I did actually have a time while testing that this somehow got screwed up which is why its here now >__>
+
     Spring.SetCameraState(camState, 1.0)
 
 
