@@ -5,7 +5,7 @@ Camera Rotation Reset:
 Sets spring camera orientation by chat command or keybind
 
 I made this because anchorkeys aren't persistent and I didn't like that. <br>
-I couldn't find an easy solution to easily and repeatably adjust the camera how I wanted, so I made this widget to address that.
+I couldn't find a solution to easily and repeatably adjust the camera how I wanted, so I made this widget to address that.
 
 
 Chat: /camset X Y  (replace XY with the desired values, in degrees)
