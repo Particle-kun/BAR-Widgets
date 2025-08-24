@@ -9,6 +9,7 @@ I couldn't find a solution to easily and repeatably adjust the camera how I want
 So I made this widget to address that.
 
 # Usage
+Place file in BeyondAllReason -> data -> LuaUi -> Widgets
 
 Chat: `/camset X Y`  (replace XY with the desired values, in degrees, and separated by a space) EX: `/camset 45 90`
 
