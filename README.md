@@ -16,7 +16,7 @@ List of commands: `/camset X Y`         `/setcam X Y`         `/camerareset`    
    
 You can also choose to use a single value to ONLY update a particular axis like this: ``/camset 90`` <-- that will change your pitch (X) while keeping your yaw (Y) the same.<br>
 Alternatively, you can set your yaw and leave pitch unchanged by adding a Y after your singular number <br>
-like this: ``/camset 90Y  or  /camset 90y``
+like this: ``/camset 90Y``  or  ``/camset 90y``
 
     
 For engine default values, use ``/camerareset`` or `/resetcamera` or alternatively `/camset` or `/setcam` without any numbers.
