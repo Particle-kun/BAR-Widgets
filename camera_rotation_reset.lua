@@ -57,7 +57,8 @@ end
 
 function widget:HandleCameraReset()
 	rotX = 2.677   -- this is the default value for X, in radians. Basically equal to math.rad(63.381) + math.rad(90)
-	rotY = 0       
+	rotY = 0  
+	rotY_isCommanded = true
     self:ResetTheCamera()
 end
 
